@@ -28,6 +28,26 @@ Open source: <https://github.com/BI3BJU>
 
 The extension is backward compatible with the native JTTY frame format.
 
+## Interoperability with JTTY Unicode for Android
+
+JTTY Unicode for Windows and [JTTY Unicode for
+Android](https://github.com/BI3BJU/JTTY_Unicode_Android) use the same over-the-air
+protocol and decode each other directly:
+
+- **Native JTTY frames** are identical to WSJT-X 3.2 and work in both directions.
+- **Unicode extension frames** (bit 33, four UTF-8 bytes per frame, CRC-8, up to
+  63 bytes in 1–16 frames) work in both directions.
+- No gateway, bridge or text conversion is required: both programs transmit and
+  receive the same GFSK waveform at the same audio offset.
+- The Android app's whole-passband decoder (300–2700 Hz) and the Windows wideband
+  search decode the signal without forcing the Rx frequency marker onto the
+  sender's audio offset.
+- Verified with **Windows 3.2.0-rc1.261122** and **Android 0.1.0.261122**.
+
+For Unicode text, both ends need a build with the Unicode extension
+(Windows 3.2.0-rc1.261122+ / Android 0.1.0.261122+). Native JTTY remains
+compatible with unmodified WSJT-X 3.2.
+
 ## Programs
 
 *JTTY Unicode* is built on the WSJT-X codebase and runs on Windows, macOS, and
